@@ -90,3 +90,60 @@ class Personagem {
             console.log(`${this.nome} usa sua furtividade de nível ${this.furtividade} para se esconder!`);
         }
     }
+
+    // Classe derivada - Paladino
+    class Paladino extends Personagem {
+        constructor(nome, nivel, vida, mana, fe) {
+            super(nome, "Paladino", nivel, vida, mana);
+            this.fe = fe; // Atributo específico
+        }
+        
+        // Sobrescrevendo o método atacar
+        defesa() {
+            console.log(`${this.nome} se defendeu com o escudo sagrado, absorvendo mais dano com base na fé (${this.fe})!`);
+        }
+        
+        // Método específico
+        curar() {
+            console.log(`${this.nome} usa sua fé para curar a si mesmo ou aliados!`);
+        }
+    }
+    // Classe derivada - Mecanico
+    class Mecanico extends Personagem {
+        constructor(nome, nivel, vida, mana, engenharia) {
+            super(nome, "Mecânico", nivel, vida, mana);
+            this.engenharia = engenharia; // Atributo específico
+        }
+        
+        // Sobrescrevendo o método atacar
+        receberDanoe(dano) {
+            const danoReduzido = dano - this.engenharia;
+            super.receberDano(danoReduzido);
+            console.log(`${this.nome} usou sua engenharia para reduzir o dano em ${this.engenharia} .`);
+        }
+        
+        // Método específico
+        construirTorre() {
+            console.log(`${this.nome} construiu uma torre defensiva!`);
+        }
+    } 
+
+    // Criando instância da classe derivada Assassino
+    const assassino = new Assassino("Luna Sombria", 10, 100, 50, 8);
+    // Chamando os métodos
+    assassino.atacar(); // Método sobrescrito
+    assassino.usarFurtividade(); // Método específico
+
+
+    // Criando instância da classe derivada Paladino
+    const paladino = new Panadino("Sir Lancelot", 12, 120, 70, 15);
+    // Chamando os métodos
+    paladino.defesa(); // Método sobrescrito
+    paladino(); // Método específico
+
+
+    // Criando instância da classe derivada Mecanico
+    const mecanico = new Mecanico("Robert das Engrenagens", 8, 90, 40, 5);
+    // Chamando so métodos
+    mecanico.receberDano(30); // Método sobrescrito
+    mecanico.construirTorre(); // Método específico
