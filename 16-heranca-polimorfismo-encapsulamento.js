@@ -136,10 +136,10 @@ class Personagem {
 
 
     // Criando instância da classe derivada Paladino
-    const paladino = new Panadino("Sir Lancelot", 12, 120, 70, 15);
+    const paladino = new Paladino("Sir Lancelot", 12, 120, 70, 15);
     // Chamando os métodos
     paladino.defesa(); // Método sobrescrito
-    paladino(); // Método específico
+    paladino.curar(); // Método específico
 
 
     // Criando instância da classe derivada Mecanico
