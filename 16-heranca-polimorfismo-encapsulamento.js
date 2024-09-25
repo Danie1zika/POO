@@ -116,7 +116,7 @@ class Personagem {
         }
         
         // Sobrescrevendo o método atacar
-        receberDanoe(dano) {
+        receberDano(dano) {
             const danoReduzido = dano - this.engenharia;
             super.receberDano(danoReduzido);
             console.log(`${this.nome} usou sua engenharia para reduzir o dano em ${this.engenharia} .`);
@@ -147,3 +147,23 @@ class Personagem {
     // Chamando so métodos
     mecanico.receberDano(30); // Método sobrescrito
     mecanico.construirTorre(); // Método específico
+
+    console.log("-------------------------------------------------------");
+    console.log("Modificando os objetos usando setters:");
+    console.log("-------------------------------------------------------");
+
+    // Modificando o objeto assassino usando setters
+    assassino.nome = "Raven";
+    console.log(`Nome modificado: ${assassino.nome}`);
+    assassino.atacar();
+
+    // Modificando o objeto paladino usando setters
+    paladino.vida = 150;
+    console.log(`Vida modificada: ${paladino.vida}`);
+    paladino.defesa();
+
+    // Modificando o objeto mecanico usando setters
+    mecanico.mana = 60;
+    console.log(`Mana modificada: ${mecanico.mana}`);
+    mecanico.receberDano(50);
+
