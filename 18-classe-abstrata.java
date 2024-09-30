@@ -11,3 +11,65 @@ abstract class Personagem {
     public abstract void atacar();
     public abstract void defender();
 }
+
+// Classe derivada "Guerreiro"
+class Guerreiro extends Personagem {
+    private String arma;
+
+    // Construtor da classe Guerreiro
+    public Guerreiro(String nome, String arma) {
+        super(nome);
+        this.arma = arma;
+    }
+
+    // Sobrescrita do método Atacar da classe Abstrata Personagem
+    @Override
+    public void atacar() {
+        System.out.println(nome + " ataca com a " + arma + "!");
+    }
+
+    // Sobrescrita do método defender da classe Abstrata Personagem
+    @Override
+    public void defender() {
+        System.out.println(nome + " levanta o escudo para se defender!");
+    }
+}
+
+// Classe derivada "Mago"
+class Mago extends Personagem {
+    private String magia;
+
+    // Construtor da classe Mago
+    public Mago(String nome, String magia) {
+        super(nome);
+        this.magia = magia;
+    }
+
+    // Sobrescrita do método atacar da classe Abstrata Personagem
+    @Override
+    public void atacar () {
+        System.out.println(nome + " lança a magia " + magia + "!");
+    }
+
+    // Sobrescita do método defender da classe Abstrata Personagem
+    @Override
+    public void defender() {
+        System.out.println(nome + " usa um escudo mágico para se defender!");
+    }
+}
+
+ // Classe principal
+ public class Main {
+    public static void main (String[] args) {
+        // Criando objetos/instâncias
+        // Personagem personagem = new Personagem("Inválido"); // Não é possível instanciar
+
+        Guerreiro guerreiro = new Guerreiro("Thorin", "Espada");
+        guerreiro.atacar(); // Saída: "Thorin ataca com a Espada"!
+        guerreiro.defender(); // Saída: "Thorin levanta o escudo para se defender!"!
+
+        Mago mago = new Mago("Gandalf", "Bola de fogo");
+        mago.atacar(); // Saída: "Gandalf lança a magia Bola de fogo!"
+        mago.defender(); // Saída: "Gandalf usa um escudo mágico para se defender!"
+    }
+ }
