@@ -6,8 +6,8 @@ class Personagem {
   #nivel;
   #experiencia;
   #classe;
-  #arma;
   #magia;
+  #arma;
   #habilidadeEspecial;
   constructor(
     nome,
@@ -17,20 +17,25 @@ class Personagem {
     nivel,
     experiencia,
     classe,
-    arma,
     magia,
+    arma,
     habilidadeEspecial
   ) {
+    if (new.target === Personagem) {
+      throw new Error(
+        "Não é possível instanciar a classe abstrata Personagem diretamente"
+      );
+    }
     this.#nome = nome;
-    this.vida = vida;
-    this.forca = forca;
-    this.defesa = defesa;
-    this.nivel = nivel;
-    this.experiencia = experiencia;
-    this.classe = classe;
-    this.arma = arma;
-    this.magia = magia;
-    this.habilidadeEspecial = habilidadeEspecial;
+    this.#vida = vida;
+    this.#forca = forca;
+    this.#defesa = defesa;
+    this.#nivel = nivel;
+    this.#experiencia = experiencia;
+    this.#classe = classe;
+    this.#magia = magia;
+    this.#arma = arma;
+    this.#habilidadeEspecial = habilidadeEspecial;
   }
 
   get nome() {
@@ -38,12 +43,6 @@ class Personagem {
   }
   set nome(nome) {
     this.#nome = nome;
-  }
-  get vida() {
-    return this.#vida;
-  }
-  set vida(vida) {
-    this.#vida = vida;
   }
   get forca() {
     return this.#forca;
@@ -56,6 +55,12 @@ class Personagem {
   }
   set defesa(defesa) {
     this.#defesa = defesa;
+  }
+  get vida() {
+    return this.#vida;
+  }
+  set vida(vida) {
+    this.#vida = vida;
   }
   get nivel() {
     return this.#nivel;
@@ -75,17 +80,17 @@ class Personagem {
   set classe(classe) {
     this.#classe = classe;
   }
-  get arma() {
-    return this.#arma;
-  }
-  set arma(arma) {
-    this.#arma = arma;
-  }
   get magia() {
     return this.#magia;
   }
   set magia(magia) {
     this.#magia = magia;
+  }
+  get arma() {
+    return this.#arma;
+  }
+  set arma(arma) {
+    this.#arma = arma;
   }
   get habilidadeEspecial() {
     return this.#habilidadeEspecial;
@@ -93,145 +98,346 @@ class Personagem {
   set habilidadeEspecial(habilidadeEspecial) {
     this.#habilidadeEspecial = habilidadeEspecial;
   }
-
-  // Métodos
   atacar(...args) {
-    if (args.length === 0) {
-      console.log(`{$this.#nome} realizou um ataque com ${this.arma}!`);
-    } else if (args.length === 1) {
-      console.log(`${this.#nome} atacou com um poder de ${args[0]}!`);
-    } else if (args.length === 2) {
-      console.log(
-        `${this.#nome} usou ${args[1]} e atacou com ${args[0]} de poder!`
-      );
-    } else {
-      console.log("Número inválido de argumentos.");
-    }
+    throw new Error(
+      "O método atacar() deve ser implementado pela classe derivada."
+    );
   }
+
   defender() {
-    console.log(`${this.nome} defende-se com ${this.defesa}!`);
+    throw new Error(
+      "O método defender() deve ser implementado pela classe derivada."
+    );
   }
   usarMagia() {
-    console.log(`${this.nome} utiliza ${this.magia} para atacar!`);
+    throw new Error(
+      "O método defender() deve ser implementado pela classe derivada."
+    );
   }
   ganharExperiencia() {
-    this.experiencia += 10;
-    console.log(`${this.nome} ganhou 10 experiência!`);
+    throw new Error(
+      "O método ganharExperiencia() deve ser implementado pela classe derivada."
+    );
   }
   info() {
-    console.log(`Nome: ${this.nome}`);
-    console.log(`Vida: ${this.vida}`);
-    console.log(`Força: ${this.forca}`);
-    console.log(`Defesa: ${this.defesa}`);
-    console.log(`Nível: ${this.nivel}`);
-    console.log(`Experiência: ${this.experiencia}`);
-    console.log(`Classe: ${this.classe}`);
-    console.log(`Arma: ${this.arma}`);
-    console.log(`Magia: ${this.magia}`);
-    console.log(`Habilidade Especial: ${this.habilidadeEspecial}`);
+    throw new Error(
+      "O método info() deve ser implementado pela classe derivada."
+    );
   }
 }
 
-// Classes derivadas
 class Guerreiro extends Personagem {
-    constructor(nome, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial, armadura, potenciaDeAtaque) {
-        super(nome, nivel, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial);
-        this.armadura = armadura;
-        this.potenciaDeAtaque = potenciaDeAtaque;
+  #armadura;
+  #potenciaAtaque;
+  constructor(
+    nome,
+    vida,
+    forca,
+    defesa,
+    nivel,
+    experiencia,
+    classe,
+    magia,
+    arma,
+    habilidadeEspecial,
+    armadura,
+    potenciaAtaque
+  ) {
+    super(
+      nome,
+      vida,
+      forca,
+      defesa,
+      nivel,
+      experiencia,
+      classe,
+      magia,
+      arma,
+      habilidadeEspecial
+    );
+    this.#armadura = armadura;
+    this.#potenciaAtaque = potenciaAtaque;
+  }
+  get armadura() {
+    return this.#armadura;
+  }
+  set armadura(armadura) {
+    this.#armadura = armadura;
+  }
+  get potenciaAtaque() {
+    return this.#potenciaAtaque;
+  }
+  set potenciaAtaque(potenciaAtaque) {
+    this.#potenciaAtaque = potenciaAtaque;
+  }
+
+  gritarGuerra() {
+    console.log(
+      `${this.nome} realiza um poderoso grito fazendo com que seus inimigos se intimidem`
+    );
+  }
+
+  atacar(...args) {
+    if (args.length === 0) {
+      console.log(`${this.nome} realiza um ataque rapido!`);
+    } else if (args.length === 1) {
+      const arma = args[0];
+      console.log(`${this.nome} ataca com ${arma}!`);
+    } else if (args.length === 2) {
+      const [tipoMagia, comMana] = args;
+      if (comMana) {
+        console.log(`${this.nome} dispara ${tipoMagia} com sua mana!`);
+      } else {
+        console.log(`${this.nome} dispara ${tipoMagia} sem mana`);
+      }
+    } else {
+      console.log("Número de argumentos não suportado.");
     }
-    gritarGuerra() {
-        console.log(`${this.nome} grita em guerra!`);
-    }
-    atacar() {
-        console.log(`${this.nome} ataca com ${this.arma} e gera ${this.potenciaDeAtaque} dano!`);
-    }
-    defender() {
-        console.log(`${this.nome} defende-se com ${this.armadura} e consegue absorver ${this.defesa} de dano!`);
-    }
+  }
 }
+
 class Mago extends Personagem {
-    constructor(nome, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial, nivelMagia, elemento) {
-        super(nome, nivel, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial);
-        this.nivelMagia = nivelMagia;
-        this.elemento = elemento;
-    }
-    usarMagia() {
-        console.log(`${this.nome} ataca com ${this.arma} e causa ${this.nivelMagia * 10} pontos de dano de ${this.elemento}!`);
-    }
-    invocar() {
-        console.log(`${this.nome} invoca um ${this.habilidadeEspecial}!`);
-    }
+  #nivelMagia;
+  #elemento;
+  constructor(
+    nome,
+    vida,
+    forca,
+    defesa,
+    nivel,
+    experiencia,
+    classe,
+    magia,
+    arma,
+    habilidadeEspecial,
+    nivelMagia,
+    elemento
+  ) {
+    super(
+      nome,
+      vida,
+      forca,
+      defesa,
+      nivel,
+      experiencia,
+      classe,
+      magia,
+      arma,
+      habilidadeEspecial
+    );
+    this.#nivelMagia = nivelMagia;
+    this.#elemento = elemento;
+  }
+  get nivelMagia() {
+    return this.#nivelMagia;
+  }
+  set nivelMagia(nivelMagia) {
+    this.#nivelMagia = nivelMagia;
+  }
+  get elemento() {
+    return this.#elemento;
+  }
+  set elemento(elemento) {
+    this.#elemento = elemento;
+  }
+
+  invocar() {
+    console.log(
+      `${this.nome} invoca varios mortos-vivos que começam a correr loucamente em seu inimigo`
+    );
+  }
+
+  usarMagia(dano) {
+    this.vida -= dano;
+    console.log(`${this.nome} realiza ${dano} de dano em seu inimigo`);
+  }
 }
 
 class Arqueiro extends Personagem {
-  constructor( nome, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial, tipoArco, precisao) {
-    super(nome, nivel, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial);
-    this.tipoArco = tipoArco;
-    this.precisao = precisao;
-    }
-    atirarFlecha() {
-        console.log(`${this.nome} atira uma flecha por segundo!`);
-    }
-    info() {
-    console.log(`Nome: ${this.nome}`);
-    console.log(`Vida: ${this.vida}`);
-    console.log(`Força: ${this.forca}`);
-    console.log(`Defesa: ${this.defesa}`);
-    console.log(`Nível: ${this.nivel}`);
-    console.log(`Experiência: ${this.experiencia}`);
-    console.log(`Classe: ${this.classe}`);
-    console.log(`Arma: ${this.arma}`);
-    console.log(`Magia: ${this.magia}`);
-    console.log(`Habilidade Especial: ${this.habilidadeEspecial}`);
+  #tipoArco;
+  #precisao;
+  constructor(
+    nome,
+    vida,
+    forca,
+    defesa,
+    nivel,
+    experiencia,
+    classe,
+    magia,
+    arma,
+    habilidadeEspecial,
+    tipoArco,
+    precisao
+  ) {
+    super(
+      nome,
+      vida,
+      forca,
+      defesa,
+      nivel,
+      experiencia,
+      classe,
+      magia,
+      arma,
+      habilidadeEspecial
+    );
+    this.#tipoArco = tipoArco;
+    this.#precisao = precisao;
+  }
+  get tipoArco() {
+    return this.#tipoArco;
+  }
+  set tipoArco(tipoArco) {
+    this.#tipoArco = tipoArco;
+  }
+  get precisao() {
+    return this.#precisao;
+  }
+  set precisao(precisao) {
+    this.#precisao = precisao;
+  }
+  atirarFlecha() {
+    console.log(
+      `${this.nome} destruiu varios inimigo com sua poderosa flecha em seu arco`
+    );
+  }
+
+  info() {
+    console.log(`${this.nome}`);
+    console.log(`${this.vida}`);
+    console.log(`${this.forca}`);
+    console.log(`${this.defesa}`);
+    console.log(`${this.nivel}`);
+    console.log(`${this.experiencia}`);
+    console.log(`${this.classe}`);
+    console.log(`${this.magia}`);
+    console.log(`${this.arma}`);
+    console.log(`${this.habilidadeEspecial}`);
+    console.log(`${this.tipoArco}`);
+    console.log(`${this.precisao}`);
   }
 }
 
 class Ladino extends Personagem {
-    constructor(nome, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial, habilidadeFurtiva, agilidade) {
-        super(nome, nivel, vida, forca, defesa, nivel, experiencia, classe, arma, habilidadeEspecial);
-        this.habilidadeFurtiva = habilidadeFurtiva;
-        this.agilidade = agilidade;
-    }
-    desaparecer() {
-        console.log(`${this.nome} desaparece!`);
-    }
-    defender() {
-        console.log(`${this.nome} ganhou ${this.agilidade} de agilidade!`);
-    }
+  #habilidadeFurtiva;
+  #agilidade;
+  constructor(
+    nome,
+    vida,
+    forca,
+    defesa,
+    nivel,
+    experiencia,
+    classe,
+    magia,
+    arma,
+    habilidadeEspecial,
+    habilidadeFurtiva,
+    agilidade
+  ) {
+    super(
+      nome,
+      vida,
+      forca,
+      defesa,
+      nivel,
+      experiencia,
+      classe,
+      magia,
+      arma,
+      habilidadeEspecial
+    );
+    this.#habilidadeFurtiva = habilidadeFurtiva;
+    this.#agilidade = agilidade;
+  }
+  get habilidadeFurtiva() {
+    return this.#habilidadeFurtiva;
+  }
+  set habilidadeFurtiva(habilidadeFurtiva) {
+    this.#habilidadeFurtiva = habilidadeFurtiva;
+  }
+  get agilidade() {
+    return this.#agilidade;
+  }
+  set agilidade(agilidade) {
+    this.#agilidade = agilidade;
+  }
+  desaparecer() {
+    console.log(`${this.nome} desaparece com sua incrivel furtividade`);
+  }
+
+  defender() {
+    console.log(`${this.nome} realiza uma defesa com seu escudo abençoado`);
+  }
 }
 
-// Criando instâncias das classes
-
-const guerreiro = new Guerreiro("Arthur", 100, 20, 10, 1, 10, "Espada", "Guerreiro", "Escudo de Aço", "Armadura de Ferro", 20);
-// Chamando os métodos sobrescritos
+const guerreiro = new Guerreiro(
+  "guerreiro",
+  100,
+  70,
+  50,
+  10,
+  50,
+  45,
+  20,
+  10,
+  30,
+  0,
+  50,
+  20
+);
 guerreiro.gritarGuerra();
-guerreiro.atacar();
-guerreiro.defender();
+guerreiro.atacar(30);
 
-const mago = new Mago("Merlin", 80, 15, 5, 1, 10, "Bola de Fogo", "Mago", "Dragão", 2, "Fogo");
-mago.usarMagia();
+const mago = new Mago("mago", 100, 30, 50, 20, 40, 15, 25, 40, 35, 0, 50, 10);
 mago.invocar();
+mago.usarMagia(40);
 
-const arqueiro = new Arqueiro("Thorin", 8, 8, 1, 80, "Arqueiro", "Arco Longo", "Não possui magia", "Chuva de Flechas", 30);
+const arqueiro = new Arqueiro(
+  "arqueiro",
+  100,
+  10,
+  30,
+  80,
+  100,
+  20,
+  0,
+  "arco",
+  "flechaDivina",
+  "flamejante",
+  100
+);
 arqueiro.atirarFlecha();
 arqueiro.info();
 
-const ladino = new Ladino("Loki", 90, 25, 7, 1, 10, "Ladino", "Adagas", "Furtividade", 20, 20);
+const ladino = new Ladino("ladino", 100, 60, 40, 10, 50, 30, 20, 15, 50, 0, 80);
 ladino.desaparecer();
 ladino.defender();
 
-console.log("-------------------------------------------------------");
+console.log("----------------------------------------------------------------");
 console.log("Modificando os objetos usando setters:");
-console.log("-------------------------------------------------------");
+console.log("----------------------------------------------------------------");
 
-guerreiro.defesa = -20;
-console.log(`Guerreiro perdeu ${guerreiro.defesa} de armadura`);
+//Modificando o objeto guerreiro usando setters
+guerreiro.nome = "Thorfinn";
+console.log(`Nome modificado: ${guerreiro.nome}`);
+guerreiro.atacar(30);
 
-mago.vida = +200;
-console.log(`Mago ganhou ${mago.vida} de vida`);
+//Modificando o objeto arqueiro usando setters
 
-arqueiro.dano = +20;
-console.log(`Arqueiro ganhou ${arqueiro.dano} de dano durante 5 segundos`);
+arqueiro.nome = "Hakuna Matata";
+console.log(`Nome modificado: ${arqueiro.nome}`);
+arqueiro.atirarFlecha();
 
-ladino.experiencia = +50;
-console.log(`Ladino adquiriu ${ladino.experiencia} de experiencia`);
+//Modificando o objeto ladino usando setters
+
+ladino.nome = "Thunderbolt";
+console.log(`Nome modificado: ${ladino.nome}`);
+ladino.defender();
+
+//Modificando o objeto mago usando setters
+
+mago.nome = "Lumina";
+console.log(`Nome modificado: ${mago.nome}`);
+mago.usarMagia(60);
