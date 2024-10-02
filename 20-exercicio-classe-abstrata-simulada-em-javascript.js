@@ -1,6 +1,27 @@
 class Personagem {
-    constructor(nome, vida, forca, defesa, nivel, experiencia, classe, arma, magia, habilidadeEspecial) {
-    this.nome = nome;
+  #nome;
+  #vida;
+  #forca;
+  #defesa;
+  #nivel;
+  #experiencia;
+  #classe;
+  #arma;
+  #magia;
+  #habilidadeEspecial;
+  constructor(
+    nome,
+    vida,
+    forca,
+    defesa,
+    nivel,
+    experiencia,
+    classe,
+    arma,
+    magia,
+    habilidadeEspecial
+  ) {
+    this.#nome = nome;
     this.vida = vida;
     this.forca = forca;
     this.defesa = defesa;
@@ -10,34 +31,105 @@ class Personagem {
     this.arma = arma;
     this.magia = magia;
     this.habilidadeEspecial = habilidadeEspecial;
-    }
+  }
 
-    // Métodos
-    atacar() {
-        console.log(`${this.nome} ataca com ${this.arma}!`);
+  get nome() {
+    return this.#nome;
+  }
+  set nome(nome) {
+    this.#nome = nome;
+  }
+  get vida() {
+    return this.#vida;
+  }
+  set vida(vida) {
+    this.#vida = vida;
+  }
+  get forca() {
+    return this.#forca;
+  }
+  set forca(forca) {
+    this.#forca = forca;
+  }
+  get defesa() {
+    return this.#defesa;
+  }
+  set defesa(defesa) {
+    this.#defesa = defesa;
+  }
+  get nivel() {
+    return this.#nivel;
+  }
+  set nivel(nivel) {
+    this.#nivel = nivel;
+  }
+  get experiencia() {
+    return this.#experiencia;
+  }
+  set experiencia(experiencia) {
+    this.#experiencia = experiencia;
+  }
+  get classe() {
+    return this.#classe;
+  }
+  set classe(classe) {
+    this.#classe = classe;
+  }
+  get arma() {
+    return this.#arma;
+  }
+  set arma(arma) {
+    this.#arma = arma;
+  }
+  get magia() {
+    return this.#magia;
+  }
+  set magia(magia) {
+    this.#magia = magia;
+  }
+  get habilidadeEspecial() {
+    return this.#habilidadeEspecial;
+  }
+  set habilidadeEspecial(habilidadeEspecial) {
+    this.#habilidadeEspecial = habilidadeEspecial;
+  }
+
+  // Métodos
+  atacar(...args) {
+    if (args.length === 0) {
+      console.log(`{$this.#nome} realizou um ataque com ${this.arma}!`);
+    } else if (args.length === 1) {
+      console.log(`${this.#nome} atacou com um poder de ${args[0]}!`);
+    } else if (args.length === 2) {
+      console.log(
+        `${this.#nome} usou ${args[1]} e atacou com ${args[0]} de poder!`
+      );
+    } else {
+      console.log("Número inválido de argumentos.");
     }
-    defender() {
-        console.log(`${this.nome} defende-se com ${this.defesa}!`);
-    }
-    usarMagia() {
-        console.log(`${this.nome} utiliza ${this.magia} para atacar!`);
-    }
-    ganharExperiencia() {
-        this.experiencia += 10;
-        console.log(`${this.nome} ganhou 10 experiência!`);
-    }
-    info() {
-        console.log(`Nome: ${this.nome}`);
-        console.log(`Vida: ${this.vida}`);
-        console.log(`Força: ${this.forca}`);
-        console.log(`Defesa: ${this.defesa}`);
-        console.log(`Nível: ${this.nivel}`);
-        console.log(`Experiência: ${this.experiencia}`);
-        console.log(`Classe: ${this.classe}`);
-        console.log(`Arma: ${this.arma}`);
-        console.log(`Magia: ${this.magia}`);
-        console.log(`Habilidade Especial: ${this.habilidadeEspecial}`);
-    }
+  }
+  defender() {
+    console.log(`${this.nome} defende-se com ${this.defesa}!`);
+  }
+  usarMagia() {
+    console.log(`${this.nome} utiliza ${this.magia} para atacar!`);
+  }
+  ganharExperiencia() {
+    this.experiencia += 10;
+    console.log(`${this.nome} ganhou 10 experiência!`);
+  }
+  info() {
+    console.log(`Nome: ${this.nome}`);
+    console.log(`Vida: ${this.vida}`);
+    console.log(`Força: ${this.forca}`);
+    console.log(`Defesa: ${this.defesa}`);
+    console.log(`Nível: ${this.nivel}`);
+    console.log(`Experiência: ${this.experiencia}`);
+    console.log(`Classe: ${this.classe}`);
+    console.log(`Arma: ${this.arma}`);
+    console.log(`Magia: ${this.magia}`);
+    console.log(`Habilidade Especial: ${this.habilidadeEspecial}`);
+  }
 }
 
 // Classes derivadas
